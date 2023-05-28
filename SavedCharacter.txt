@@ -1,6 +1,6 @@
-Race: Mortal
-Career: Vagabond
+Race: Draconian
+Career: Ronin
 Strength: 15
-Dexterity: 13
-Intelligence: 9
-Faith: 12
+Dexterity: 18
+Intelligence: 7
+Faith: 3
