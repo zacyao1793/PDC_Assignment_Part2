@@ -6,7 +6,7 @@
 
 /**
  *
- * @author clone
+ * @author Zac Yao
  */
 import javax.swing.*;
 

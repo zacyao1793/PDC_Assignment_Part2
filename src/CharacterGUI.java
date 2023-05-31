@@ -8,11 +8,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.sql.*;
+
 
 public class CharacterGUI {
     private JFrame frame;
@@ -264,26 +260,13 @@ public class CharacterGUI {
     }
 
     
-   
+   //I asked ChatGPT to seperate the saveCharacterToFile method to another class
     private void saveCharacterToFile(CharacterAttributes character) {
-        String filename = "SavedCharacter.txt";
-        File file = new File(filename);
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            writer.write("Race: " + character.getRace() + "\n");
-            writer.write("Career: " + character.getCareer() + "\n");
-            writer.write("Strength: " + character.getStrength() + "\n");
-            writer.write("Dexterity: " + character.getDexterity() + "\n");
-            writer.write("Intelligence: " + character.getIntelligence() + "\n");
-            writer.write("Faith: " + character.getFaith() + "\n");
-            JOptionPane.showMessageDialog(frame, "Character attributes have been saved to " + filename, "File Saved", JOptionPane.INFORMATION_MESSAGE);
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(frame, "Error saving character attributes to file.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        
-        
-        db.saveCharacter(character);
-    }
+    CharacterSave fileWriter = new CharacterSave("SavedCharacter.txt");
+    fileWriter.saveCharacterToFile(character, frame);
+    
+    db.saveCharacter(character);
+}
  
 
     
