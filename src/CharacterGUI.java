@@ -19,9 +19,11 @@ public class CharacterGUI {
     private JComboBox<String> careerComboBox;
     private JTextArea resultTextArea;
     private CharacterAttributes character;
-    private String url = "jdbc:derby://localhost:1527/characterDB;user=pdc;password=pdc";
     private JTextArea storyTextArea;
     private Database db = new Database ();
+    private JTextField nameField;
+    
+    
     
     public CharacterGUI() {
         frame = new JFrame("Elder Ring 2");
@@ -35,21 +37,27 @@ public class CharacterGUI {
         // Create the panels for each step.
         JPanel racePanel = createRacePanel();
         JPanel careerPanel = createCareerPanel();
+        JPanel namePanel = createNamePanel();
         JPanel finalPanel = createFinalPanel();
-
+        
+       
         // Add the panels to cardPanel.
         cardPanel.add(racePanel, "RacePanel");
         cardPanel.add(careerPanel, "CareerPanel");
+        cardPanel.add(namePanel, "NamePanel");
         cardPanel.add(finalPanel, "FinalPanel");
-
+        
         // Add the cardPanel to the frame.
         frame.add(cardPanel);
 
         frame.setVisible(true);
         
+ 
       
     }
 
+    
+    
     private JPanel createRacePanel() {
         JPanel panel = new JPanel(new GridBagLayout());
     
@@ -128,25 +136,18 @@ public class CharacterGUI {
         nextButton = new JButton("Next");
         nextButton.setFont(font);
          
-         
-        nextButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String career = (String) careerComboBox.getSelectedItem();
-                
-                character.applyCareerModifiers(career);
-                resultTextArea.setText("Race: " + character.getRace() + "\n" +
-                        "Career: " + career + "\n" +
-                        "Strength: " + character.getStrength() + "\n" +
-                        "Dexterity: " + character.getDexterity() + "\n" +
-                        "Intelligence: " + character.getIntelligence() + "\n" +
-                        "Faith: " + character.getFaith());
-                cardLayout.show(cardPanel, "FinalPanel");
-                
-               
-            }
-        });
         
+        
+        
+        nextButton.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String career = (String) careerComboBox.getSelectedItem();
+        character.applyCareerModifiers(career);
+        cardLayout.show(cardPanel, "NamePanel");
+    }
+});
+
         
         JButton backButton = new JButton("Back");
         backButton.setFont(font);
@@ -189,7 +190,62 @@ public class CharacterGUI {
     
     
     
+    private JPanel createNamePanel() {
+    JPanel panel = new JPanel(new GridBagLayout());
+
+    GridBagConstraints gbc = new GridBagConstraints();
+    gbc.gridwidth = GridBagConstraints.REMAINDER; 
+    gbc.fill = GridBagConstraints.HORIZONTAL; 
+    gbc.insets = new Insets(4, 4, 4, 4);
+
+    Font font = new Font("Dialog", Font.PLAIN, 18);
+
+    JLabel nameLabel = new JLabel("Enter your name:");
+    nameLabel.setFont(font);
+
+    nameField = new JTextField(20);
+    nameField.setFont(font);
+
+    JButton nextButton = new JButton("Next");
+    nextButton.setFont(font);
+
+    JButton backButton = new JButton("Back");
+    backButton.setFont(font);
     
+    
+    nextButton.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String name = nameField.getText();
+        
+        //I asked ChatGPT to add a feature that pops up a notification when the user enters a number or any non-alphabetic characters in the name field
+        if(!name.matches("[a-zA-Z]+")){
+            JOptionPane.showMessageDialog(frame, "Invalid input. Please enter only characters.", "Input error",
+                JOptionPane.ERROR_MESSAGE);
+            nameField.setText(""); //Clear the input field
+            return;
+        }
+        
+        character.setName(name);
+        resultTextArea.setText(
+            "Name: " + character.getName() + "\n" +
+            "Race: " + character.getRace() + "\n" +
+            "Career: " + character.getCareer() + "\n" +
+            "Strength: " + character.getStrength() + "\n" +
+            "Dexterity: " + character.getDexterity() + "\n" +
+            "Intelligence: " + character.getIntelligence() + "\n" +
+            "Faith: " + character.getFaith());
+        cardLayout.show(cardPanel, "FinalPanel");
+    }
+});
+
+    panel.add(nameLabel, gbc);
+    panel.add(nameField, gbc);
+    panel.add(nextButton, gbc);
+    panel.add(backButton, gbc);
+     
+    return panel;
+}
     
     
     

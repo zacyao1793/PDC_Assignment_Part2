@@ -1,3 +1,4 @@
+Name: ss
 Race: Mortal
 Career: Vagabond
 Strength: 15

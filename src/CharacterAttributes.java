@@ -15,6 +15,7 @@ public abstract class CharacterAttributes {
 //I want these variables can be accessed by any subclass that inherits from the CharacterAttributes class
     String race;
     String career;
+    String name;
     int strength;
     int dexterity;
     int intelligence;
@@ -28,9 +29,24 @@ public abstract class CharacterAttributes {
     public void setRace(String race) {
         this.race = race;
     }
+    
     public String getCareer() {
         return career;
     }
+    
+    public void setCareer(String career) {
+        this.career = career;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    
     
     public int getStrength() {
         return strength;
@@ -138,7 +154,7 @@ public abstract class CharacterAttributes {
             
             
     }
-    //So the career field in database is valid
+    //So the career field in database is valid instead of null
     this.career=career;
 }
 

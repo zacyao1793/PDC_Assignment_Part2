@@ -26,6 +26,7 @@ public class CharacterSave {
         File file = new File(filename);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            writer.write("Name: " + character.getName() + "\n");
             writer.write("Race: " + character.getRace() + "\n");
             writer.write("Career: " + character.getCareer() + "\n");
             writer.write("Strength: " + character.getStrength() + "\n");
