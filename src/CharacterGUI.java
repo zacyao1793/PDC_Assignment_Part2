@@ -14,7 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
 
-public class Main_CharacterGUI {
+public class CharacterGUI {
     private JFrame frame;
     private CardLayout cardLayout;
     private JPanel cardPanel;
@@ -27,7 +27,7 @@ public class Main_CharacterGUI {
     private JTextArea storyTextArea;
     private Database db = new Database ();
     
-    public Main_CharacterGUI() {
+    public CharacterGUI() {
         frame = new JFrame("Elder Ring 2");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 800);
@@ -89,10 +89,10 @@ public class Main_CharacterGUI {
         storyTextArea = new JTextArea(10, 40);
         storyTextArea.setFont(font);
         storyTextArea.setText("\"Greetings, traveler. Before we proceed, tell me, which of these forms will your soul inhabit?\n"
-                + "Will you be a mortal, one of the Deepkin who dwell beneath the waves, \n"
-                + "or perhaps a Feymour, touched by the magic of the faerie realms? \n"
-                + "Alternatively, will you take on the form of a Draconian, with scales as hard as steel, \n"
-                + "or a Celestial, born of the stars themselves?\"");
+                + "\nWill you be a mortal, one of the Deepkin who dwell beneath the waves, \n"
+                + "\nor perhaps a Feymour, touched by the magic of the faerie realms? \n"
+                + "\nAlternatively, will you take on the form of a Draconian, with scales as hard as steel, \n"
+                + "\nor a Celestial, born of the stars themselves?\"");
         storyTextArea.setEditable(false);
 
         panel.add(raceLabel, gbc);
@@ -171,12 +171,12 @@ public class Main_CharacterGUI {
         JTextArea storyTextAreaCareer = new JTextArea(10, 40);
         storyTextAreaCareer.setFont(font);
         storyTextAreaCareer.setText("\"Your journey begins now, traveler. Before we face the trials ahead, tell me, \n"
-                + "what calling has your soul heard? Will you wander as a Vagabond, seeking adventure in every corner of the land? \n"
-                + "Will you serve as a Ronin, a masterless samurai seeking redemption? \n"
-                + "Perhaps you are a Pagan, attuned to the spirits of the earth and sky. \n"
-                + "Or will you harness both magic and steel as a Spellblade? \n"
-                + "Maybe you have taken the mantle of a Witch Hunter, sworn to protect the realms from the dark forces that threaten them. \n"
-                + "Choose your path wisely, for it will determine your fate.\"");
+                + "\nwhat calling has your soul heard? Will you wander as a Vagabond, seeking adventure in every corner of the land? \n"
+                + "\nWill you serve as a Ronin, a masterless samurai seeking redemption? \n"
+                + "\nPerhaps you are a Pagan, attuned to the spirits of the earth and sky. \n"
+                + "\nOr will you harness both magic and steel as a Spellblade? \n"
+                + "\nMaybe you have taken the mantle of a Witch Hunter, sworn to protect the realms from the dark forces that threaten them. \n"
+                + "\nChoose your path wisely, for it will determine your fate.\"");
         
         storyTextAreaCareer.setEditable(false);
       
@@ -222,9 +222,9 @@ public class Main_CharacterGUI {
         storyTextAreaFinal.setFont(font);
         
                 storyTextAreaFinal.setText( "Your soul has found its vessel, and your journey has begun, adventurer. \n"
-                    + "You have chosen your calling and your fate is now intertwined with the fabric of this world. \n"
-                    + "May your footsteps be guided by the light of your convictions, \n"
-                    + "and your blade strike true against the darkness that threatens us all. ");
+                    + "\nYou have chosen your calling and your fate is now intertwined with the fabric of this world. \n"
+                    + "\nMay your footsteps be guided by the light of your convictions, \n"
+                    + "\nand your blade strike true against the darkness that threatens us all. ");
                 
                 storyTextAreaFinal.setEditable(false);
                 
@@ -286,12 +286,5 @@ public class Main_CharacterGUI {
     }
  
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Main_CharacterGUI();
-            }
-        });
-    }
+    
 }
