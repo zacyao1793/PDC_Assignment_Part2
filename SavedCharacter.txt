@@ -1,7 +1,7 @@
-Name: UwU
-Race: Celestial
-Career: Pagan
-Strength: 6
-Dexterity: 8
-Intelligence: 16
-Faith: 24
+Name: bo
+Race: Mortal
+Career: Vagabond
+Strength: 15
+Dexterity: 13
+Intelligence: 9
+Faith: 12
