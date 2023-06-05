@@ -1,0 +1,31 @@
+------------------Elder Ring 2-----------------
+"Greetings, traveler. Before we proceed, tell me, 
+which of these forms will your soul inhabit? 
+Will you be a mortal, one of the Deepkin who dwell beneath the waves, 
+or perhaps a Feymour, touched by the magic of the faerie realms? 
+Alternatively, will you take on the form of a Draconian, with scales as hard as steel, 
+or a Celestial, born of the stars themselves?"
+1. Mortal
+2. Deepkin
+3. Feymour
+4. Draconian
+5. Celestial
+"Your journey begins now, traveler. Before we face the trials ahead, tell me, 
+what calling has your soul heard? Will you wander as a Vagabond, seeking adventure in every corner of the land? 
+Will you serve as a Ronin, a masterless samurai seeking redemption? 
+Perhaps you are a Pagan, attuned to the spirits of the earth and sky. 
+Or will you harness both magic and steel as a Spellblade? 
+Maybe you have taken the mantle of a Witch Hunter, sworn to protect the realms from the dark forces that threaten them. 
+Choose your path wisely, for it will determine your fate."
+1. Vagabond
+2. Ronin
+3. Pagan
+4. Spellblade
+5. Witch Hunter
+Ahhh Deepkin Pagan, what a brilliant choose! 
+Your soul has found its vessel, and your journey has begun, adventurer. 
+You have chosen your calling and your fate is now intertwined with the fabric of this world. 
+May your footsteps be guided by the light of your convictions, 
+and your blade strike true against the darkness that threatens us all. 
+-----------------------------
+Race: Deepkin

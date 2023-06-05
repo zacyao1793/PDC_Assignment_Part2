@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class CharacterGUI {
+    // GUI components
     private JFrame frame;
     private CardLayout cardLayout;
     private JPanel cardPanel;
@@ -24,20 +25,23 @@ public class CharacterGUI {
     private JTextArea storyTextArea;
     private Database db = new Database ();
     private JTextField nameField;
-
+    
     
     
     public CharacterGUI() {
-        frame = new JFrame("Elder Ring 2");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000, 800);
+        //Constructors for the GUI
+        frame = new JFrame("Elder Ring 2");// The main window
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// Close bottom
+        frame.setSize(1000, 800);// Size of the main window
 
+        
+        
         // Create the CardLayout and the cardPanel.
-        cardLayout = new CardLayout();
-        cardPanel = new JPanel(cardLayout);
+        cardLayout = new CardLayout();// Layout manager for the main panel
+        cardPanel = new JPanel(cardLayout);// Main panel with cardLayout as its layout manager
 
     
-        // Create the panels for each step.
+        // Create each of the panels for the CardLayout
         JPanel titlePanel = createTitlePanel();
         JPanel racePanel = createRacePanel();
         JPanel careerPanel = createCareerPanel();
@@ -45,8 +49,7 @@ public class CharacterGUI {
         JPanel finalPanel = createFinalPanel();
         JPanel loadPanel = createLoadPanel();
        
-        // Add the panels to cardPanel.
-        
+        // Add each panel to the CardLayout
         cardPanel.add(titlePanel, "TitlePanel");
         cardPanel.add(racePanel, "RacePanel");
         cardPanel.add(careerPanel, "CareerPanel");
@@ -56,15 +59,19 @@ public class CharacterGUI {
         
         // Add the cardPanel to the frame.
         frame.add(cardPanel);
-
+       // Make it visible
         frame.setVisible(true);
         
  
+       
+
+
       
     }
 
-    
+    // Method to create the title panel
     private JPanel createTitlePanel() {
+        
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setBackground(new Color(30, 30, 30));
 
@@ -102,7 +109,7 @@ public class CharacterGUI {
     
     
     
-    
+     // Method to create the race panel
     private JPanel createRacePanel() {
         JPanel panel = new JPanel(new GridBagLayout());
          panel.setBackground(new Color(51, 51, 51));
@@ -184,7 +191,7 @@ public class CharacterGUI {
     
     
     
-    
+    // Method to create the career panel
     private JPanel createCareerPanel() {
         JPanel panel = new JPanel(new GridBagLayout());
     
@@ -273,7 +280,7 @@ public class CharacterGUI {
 
     
     
-    
+    // Method to create the name panel
     private JPanel createNamePanel() {
     JPanel panel = new JPanel(new GridBagLayout());
     panel.setBackground(new Color(153, 153, 153));
@@ -351,7 +358,7 @@ public class CharacterGUI {
 }
     
     
-    
+    // Method to create the final panel
     private JPanel createFinalPanel() {
         
        JPanel panel = new JPanel(new GridBagLayout());
@@ -433,7 +440,7 @@ public class CharacterGUI {
     
    
     
-    
+    // Method to create the load character panel
      private JPanel createLoadPanel() {
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setBackground(new Color(153, 153, 153));
@@ -485,6 +492,7 @@ public class CharacterGUI {
     db.saveCharacter(character);
 }
      
+    //Method to load a character's details from a database
     private void loadCharacterFromDatabase(String name) {
         Database db = new Database();
         CharacterAttributes loadedCharacter = db.loadCharacter(name);
