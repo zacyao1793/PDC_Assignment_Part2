@@ -16,11 +16,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class RPG_Character_Generator {
+public class CharactrtInfo {
 //The variable cannot be reassigned once it is initialized
     private final Scanner scanner;
 //Get user input
-    public RPG_Character_Generator(Scanner scanner) {
+    public CharactrtInfo(Scanner scanner) {
         this.scanner = scanner;
     }
 

@@ -238,6 +238,14 @@ public class CharacterGUI {
         cardLayout.show(cardPanel, "FinalPanel");
     }
 });
+    
+    
+    backButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            cardLayout.show(cardPanel, "CareerPanel");
+        }
+    });
 
     panel.add(nameLabel, gbc);
     panel.add(nameField, gbc);

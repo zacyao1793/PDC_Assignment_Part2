@@ -1,4 +1,4 @@
-Name: ss
+Name: faa
 Race: Mortal
 Career: Vagabond
 Strength: 15
