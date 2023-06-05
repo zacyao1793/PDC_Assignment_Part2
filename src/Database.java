@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 
 public class Database {
     
@@ -47,8 +48,40 @@ public class Database {
             pstmt.executeUpdate();
             System.out.println("Character Saved ");
 
+            
+            
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
+    
+    
+    public CharacterAttributes loadCharacter(String name) {
+        String sql = "SELECT * FROM characters WHERE name = ?";
+        
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, name);
+            ResultSet resultSet = pstmt.executeQuery();
+            
+            if (resultSet.next()) {
+                String race = resultSet.getString("race");
+                String career = resultSet.getString("career");
+                int strength = resultSet.getInt("strength");
+                int dexterity = resultSet.getInt("dexterity");
+                int intelligence = resultSet.getInt("intelligence");
+                int faith = resultSet.getInt("faith");
+                
+                CharacterAttributes character = CharacterCreation.createCharacterAttributes(race, strength, dexterity, intelligence, faith);
+                character.setCareer(career);
+                character.setName(name);
+                
+                return character;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return null;
+    }
 }
+

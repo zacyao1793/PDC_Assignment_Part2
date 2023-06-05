@@ -395,7 +395,7 @@ public class CharacterGUI {
     private JTextArea storyTextArea;
     private Database db = new Database ();
     private JTextField nameField;
-    
+    private JPanel loadPanel;
     
     
     public CharacterGUI() {
@@ -413,13 +413,14 @@ public class CharacterGUI {
         JPanel careerPanel = createCareerPanel();
         JPanel namePanel = createNamePanel();
         JPanel finalPanel = createFinalPanel();
-        
+        loadPanel = createLoadPanel();
        
         // Add the panels to cardPanel.
         cardPanel.add(racePanel, "RacePanel");
         cardPanel.add(careerPanel, "CareerPanel");
         cardPanel.add(namePanel, "NamePanel");
         cardPanel.add(finalPanel, "FinalPanel");
+        cardPanel.add(loadPanel, "LoadPanel");
         
         // Add the cardPanel to the frame.
         frame.add(cardPanel);
@@ -471,7 +472,23 @@ public class CharacterGUI {
                 cardLayout.show(cardPanel, "CareerPanel");
             }
         });
+        
+        
+        JButton loadButton = new JButton("Load Character");
+            loadButton.setFont(font);
+            loadButton.setBackground(new Color(51, 51, 51));
+            loadButton.setForeground(Color.WHITE);
 
+            loadButton.addActionListener(new ActionListener() {
+        @Override
+            public void actionPerformed(ActionEvent e) {
+            String name = JOptionPane.showInputDialog(frame, "Enter the name of the character to load");
+            loadCharacterFromDatabase(name);
+        }
+    });
+        
+
+            
         storyTextArea = new JTextArea(10, 40);
         storyTextArea.setFont(font);
         storyTextArea.setText("\"Greetings, traveler. Before we proceed, tell me, which of these forms will your soul inhabit?\n"
@@ -488,7 +505,8 @@ public class CharacterGUI {
         
         panel.add(storyTextArea, gbc);
         panel.add(nextButton, gbc);
-    
+        panel.add(loadButton, gbc);
+        
         return panel;
     }
 
@@ -751,6 +769,71 @@ public class CharacterGUI {
     
     db.saveCharacter(character);
 }
- 
+    
+    
+     private JPanel createLoadPanel() {
+        JPanel panel = new JPanel(new GridBagLayout());
+        panel.setBackground(new Color(153, 153, 153));
 
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(4, 4, 4, 4);
+
+        Font font = new Font("Dialog", Font.PLAIN, 18);
+
+        JLabel nameLabel = new JLabel("Loaded Character Stats:");
+        nameLabel.setFont(font);
+        nameLabel.setBackground(new Color(153, 153, 153));
+        nameLabel.setForeground(Color.WHITE);
+
+        resultTextArea = new JTextArea(10, 40);
+        resultTextArea.setFont(font);
+        resultTextArea.setEditable(false);
+        resultTextArea.setBackground(new Color(153, 153, 153));
+        resultTextArea.setForeground(Color.WHITE);
+
+        JButton backButton = new JButton("Back");
+        backButton.setFont(font);
+        backButton.setBackground(new Color(153, 153, 153));
+        backButton.setForeground(Color.WHITE);
+
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel, "RacePanel");
+            }
+        });
+
+        panel.add(nameLabel, gbc);
+        panel.add(resultTextArea, gbc);
+        panel.add(backButton, gbc);
+
+        return panel;
+    }
+
+     
+     
+    private void loadCharacterFromDatabase(String name) {
+        Database db = new Database();
+        CharacterAttributes loadedCharacter = db.loadCharacter(name);
+
+        if (loadedCharacter != null) {
+            character = loadedCharacter;
+            resultTextArea.setText(
+                    "Name: " + character.getName() + "\n" +
+                            "Race: " + character.getRace() + "\n" +
+                            "Career: " + character.getCareer() + "\n" +
+                            "Strength: " + character.getStrength() + "\n" +
+                            "Dexterity: " + character.getDexterity() + "\n" +
+                            "Intelligence: " + character.getIntelligence() + "\n" +
+                            "Faith: " + character.getFaith());
+            cardLayout.show(cardPanel, "LoadPanel");
+        } else {
+            resultTextArea.setText("Character not found.");
+        }
+    }
+
+    
+    
 }
