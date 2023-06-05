@@ -21,6 +21,8 @@ public abstract class CharacterAttributes {
     int intelligence;
     int faith;
     
+    
+    
 //get and set for above attibutes
     public String getRace() {
         return race;

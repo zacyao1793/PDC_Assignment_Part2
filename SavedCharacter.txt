@@ -1,4 +1,4 @@
-Name: faa
+Name: Den
 Race: Mortal
 Career: Vagabond
 Strength: 15

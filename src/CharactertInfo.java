@@ -16,11 +16,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class CharactrtInfo {
+public class CharactertInfo {
 //The variable cannot be reassigned once it is initialized
     private final Scanner scanner;
 //Get user input
-    public CharactrtInfo(Scanner scanner) {
+    public CharactertInfo(Scanner scanner) {
         this.scanner = scanner;
     }
 

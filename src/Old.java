@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Old {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        CharactrtInfo RPG_Character_GeneratorMenu = new CharactrtInfo(scanner);
+        CharactertInfo RPG_Character_GeneratorMenu = new CharactertInfo(scanner);
 
         RPG_Character_GeneratorMenu.run();
     }
