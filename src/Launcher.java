@@ -17,8 +17,10 @@ public class Launcher {
             @Override
             public void run() {
                 new CharacterGUI();
+                
             }
         });
+        
     }
     
     

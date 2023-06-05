@@ -747,6 +747,8 @@ public class CharacterGUI {
     CharacterSave fileWriter = new CharacterSave("SavedCharacter.txt");
     fileWriter.saveCharacterToFile(character, frame);
     
+    Database db = new Database();
+    
     db.saveCharacter(character);
 }
  

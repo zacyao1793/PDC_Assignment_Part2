@@ -19,8 +19,8 @@ public class DatabaseTest {
     @Test
     public void testSaveCharacter() {
         try {
-            CharacterAttributes getName = new CharacterAttributes();  // TODO: replace this with a real CharacterAttributes object
-            db.saveCharacter(getName);
+            CharacterAttributes race  = new Race ();  // TODO: replace this with a real CharacterAttributes object
+            db.saveCharacter(race);
         } catch (Exception e) {
             fail("Saving character failed with exception: " + e.getMessage());
         }

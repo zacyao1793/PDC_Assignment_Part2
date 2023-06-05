@@ -16,10 +16,20 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Database {
+    
     private final String url = "jdbc:derby://localhost:1527/characterDB";
     private final String user = "pdc"; 
     private final String password = "pdc";
+    private Connection connection;
 
+    public Database() {
+        try {
+            connection = DriverManager.getConnection(url, user, password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
     public void saveCharacter(CharacterAttributes character) {
         String sql = "INSERT INTO characters(name, race, career, strength, dexterity, intelligence, faith) VALUES(?, ?, ?, ?, ?, ?, ?)";
 
