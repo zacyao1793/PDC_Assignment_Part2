@@ -34,6 +34,7 @@ public class CharacterGUI {
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
 
+    
         // Create the panels for each step.
         JPanel racePanel = createRacePanel();
         JPanel careerPanel = createCareerPanel();
@@ -60,7 +61,8 @@ public class CharacterGUI {
     
     private JPanel createRacePanel() {
         JPanel panel = new JPanel(new GridBagLayout());
-    
+         panel.setBackground(new Color(51, 51, 51));
+        
         //I asked ChatGPT how to organize the layout of boxes
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER; 
@@ -69,16 +71,23 @@ public class CharacterGUI {
 
         //Text Font and Sizes
         Font font = new Font("Dialog", Font.PLAIN, 18);
-        
+            
         // Create the race selection components.
         JLabel raceLabel = new JLabel("Race:");
         raceLabel.setFont(font);
+        raceLabel.setForeground(Color.WHITE);
+        
+        
         raceComboBox = new JComboBox<>(new String[]{"Mortal", "Deepkin", "Feymour", "Draconian", "Celestial"});
         raceComboBox.setFont(font);
+        raceComboBox.setBackground(new Color(51, 51, 51));
+        raceComboBox.setForeground(Color.WHITE);
 
         // Create a button to go to the next panel.
         nextButton = new JButton("Next");
         nextButton.setFont(font);
+        nextButton.setBackground(new Color(51, 51, 51));
+        nextButton.setForeground(Color.WHITE);
 
         nextButton.addActionListener(new ActionListener() {
             @Override
@@ -98,6 +107,8 @@ public class CharacterGUI {
                 + "\nAlternatively, will you take on the form of a Draconian, with scales as hard as steel, \n"
                 + "\nor a Celestial, born of the stars themselves?\"");
         storyTextArea.setEditable(false);
+        storyTextArea.setBackground(new Color(51, 51, 51));
+        storyTextArea.setForeground(Color.WHITE);
 
         panel.add(raceLabel, gbc);
         panel.add(raceComboBox, gbc);
@@ -116,6 +127,8 @@ public class CharacterGUI {
     private JPanel createCareerPanel() {
         JPanel panel = new JPanel(new GridBagLayout());
     
+        panel.setBackground(new Color(102, 102, 102));
+        
         //I asked ChatGPT how to organize the layout of boxes
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER; 
@@ -130,11 +143,18 @@ public class CharacterGUI {
         // Create the career selection
         JLabel careerLabel = new JLabel("Career:");
         careerLabel.setFont(font);
+        careerLabel.setBackground(new Color(102, 102, 102));
+        careerLabel.setForeground(Color.WHITE);
+        
         careerComboBox = new JComboBox<>(new String[]{"Vagabond", "Ronin", "Pagan", "Spellblade", "Witch Hunter"});
         careerComboBox.setFont(font);
+        careerComboBox.setBackground(new Color(102, 102, 102));
+        careerComboBox.setForeground(Color.WHITE);
         // Create a button to go to the next panel.
         nextButton = new JButton("Next");
         nextButton.setFont(font);
+        nextButton.setBackground(new Color(102, 102, 102));
+        nextButton.setForeground(Color.WHITE);
          
         
         
@@ -151,6 +171,8 @@ public class CharacterGUI {
         
         JButton backButton = new JButton("Back");
         backButton.setFont(font);
+        backButton.setBackground(new Color(102, 102, 102));
+        backButton.setForeground(Color.WHITE);
         
         backButton.addActionListener(new ActionListener() {
         @Override
@@ -176,7 +198,8 @@ public class CharacterGUI {
                 + "\nChoose your path wisely, for it will determine your fate.\"");
         
         storyTextAreaCareer.setEditable(false);
-      
+        storyTextAreaCareer.setBackground(new Color(102, 102, 102));
+        storyTextAreaCareer.setForeground(Color.WHITE);
 
         panel.add(careerLabel, gbc);
         panel.add(careerComboBox, gbc);
@@ -192,6 +215,7 @@ public class CharacterGUI {
     
     private JPanel createNamePanel() {
     JPanel panel = new JPanel(new GridBagLayout());
+    panel.setBackground(new Color(153, 153, 153));
 
     GridBagConstraints gbc = new GridBagConstraints();
     gbc.gridwidth = GridBagConstraints.REMAINDER; 
@@ -200,18 +224,25 @@ public class CharacterGUI {
 
     Font font = new Font("Dialog", Font.PLAIN, 18);
 
-    JLabel nameLabel = new JLabel("Enter your name:");
+    JLabel nameLabel = new JLabel("What name does your soul bear?");
     nameLabel.setFont(font);
+    nameLabel.setBackground(new Color(153, 153, 153));
+    nameLabel.setForeground(Color.WHITE);
 
     nameField = new JTextField(20);
     nameField.setFont(font);
+    nameField.setBackground(new Color(153, 153, 153));
+    nameField.setForeground(Color.WHITE);
 
     JButton nextButton = new JButton("Next");
     nextButton.setFont(font);
+    nextButton.setBackground(new Color(153, 153, 153));
+    nextButton.setForeground(Color.WHITE);
 
     JButton backButton = new JButton("Back");
     backButton.setFont(font);
-    
+    backButton.setBackground(new Color(153, 153, 153));
+    backButton.setForeground(Color.WHITE);
     
     nextButton.addActionListener(new ActionListener() {
     @Override
@@ -222,6 +253,7 @@ public class CharacterGUI {
         if(!name.matches("[a-zA-Z]+")){
             JOptionPane.showMessageDialog(frame, "Invalid input. Please enter only characters.", "Input error",
                 JOptionPane.ERROR_MESSAGE);
+
             nameField.setText(""); //Clear the input field
             return;
         }
@@ -237,6 +269,8 @@ public class CharacterGUI {
             "Faith: " + character.getFaith());
         cardLayout.show(cardPanel, "FinalPanel");
     }
+    
+    
 });
     
     
@@ -258,7 +292,9 @@ public class CharacterGUI {
     
     
     private JPanel createFinalPanel() {
+        
        JPanel panel = new JPanel(new GridBagLayout());
+       panel.setBackground(new Color(204, 204, 204));
     
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER; 
@@ -274,6 +310,9 @@ public class CharacterGUI {
         resultTextArea = new JTextArea(10, 40);
         resultTextArea.setFont(font);
         resultTextArea.setEditable(false);
+        resultTextArea.setBackground(new Color(204, 204, 204));
+        resultTextArea.setForeground(Color.WHITE);
+        
 
         
         
@@ -284,15 +323,19 @@ public class CharacterGUI {
                 storyTextAreaFinal.setText( "Your soul has found its vessel, and your journey has begun, adventurer. \n"
                     + "\nYou have chosen your calling and your fate is now intertwined with the fabric of this world. \n"
                     + "\nMay your footsteps be guided by the light of your convictions, \n"
-                    + "\nand your blade strike true against the darkness that threatens us all. ");
+                    + "\nand your blade strike true against the darkness that threatens us all...... ");
                 
                 storyTextAreaFinal.setEditable(false);
+                storyTextAreaFinal.setBackground(new Color(204, 204, 204));
+                storyTextAreaFinal.setForeground(Color.WHITE);
                 
                 panel.add(storyTextAreaFinal);
                 
         // Create a button to print to file.
         JButton printToFileButton = new JButton("Save Character");
         printToFileButton.setFont(font);
+        printToFileButton.setBackground(new Color(204, 204, 204));
+        printToFileButton.setForeground(Color.WHITE);
         
         printToFileButton.addActionListener(new ActionListener() {
             @Override
@@ -306,11 +349,13 @@ public class CharacterGUI {
         
         JButton backButton = new JButton("Back");
         backButton.setFont(font);
+        backButton.setBackground(new Color(204, 204, 204));
+        backButton.setForeground(Color.WHITE);
     
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            cardLayout.show(cardPanel, "CareerPanel");
+            cardLayout.show(cardPanel, "NamePanel");
         }
         });
     
