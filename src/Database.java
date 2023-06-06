@@ -15,14 +15,21 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
-
+import java.io.File;
+import java.io.IOException;
+import java.sql.Statement;
+        
 public class Database {
-    
-    private final String url = "jdbc:derby://localhost:1527/characterDB";
+    //Running database in Network server mode
+    //private final String url = "jdbc:derby://localhost:1527/characterDB";
+    //Running database in Embedded mode
+    private final String url = "jdbc:derby:characterDB;create=true";
+
     private final String user = "pdc"; 
     private final String password = "pdc";
     private Connection connection;
-
+    
+/**
     public Database() {
         try {
             connection = DriverManager.getConnection(url, user, password);
@@ -30,9 +37,58 @@ public class Database {
             e.printStackTrace();
         }
     }
+    **/
+    
+    public Database() {
+    try {
+        Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+        connection = DriverManager.getConnection(url);
+        createSchema();
+        createTable();
+    } catch (ClassNotFoundException | SQLException e) {
+        e.printStackTrace();
+    }
+}
+   
+    public void createSchema() {
+    try (Statement stmt = connection.createStatement()) {
+        ResultSet resultSet = connection.getMetaData().getSchemas(null, "PDC");
+        if (!resultSet.next()) {
+            String createSchemaSQL = "CREATE SCHEMA pdc";
+            stmt.execute(createSchemaSQL);
+            System.out.println("Created schema in given database...");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+public void createTable() {
+    try (Statement stmt = connection.createStatement()) {
+        ResultSet resultSet = connection.getMetaData().getTables(null, "PDC", "CHARACTERS", null);
+        if (!resultSet.next()) {
+            String createTableSQL = "CREATE TABLE pdc.characters ("
+                    + "name VARCHAR(255), "
+                    + "race VARCHAR(255), "
+                    + "career VARCHAR(255), "
+                    + "strength INT, "
+                    + "dexterity INT, "
+                    + "intelligence INT, "
+                    + "faith INT)";
+            stmt.execute(createTableSQL);
+            System.out.println("Created table in given database...");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
     
     public void saveCharacter(CharacterAttributes character) {
-        String sql = "INSERT INTO characters(name, race, career, strength, dexterity, intelligence, faith) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        
+        
+        //String sql = "INSERT INTO characters(name, race, career, strength, dexterity, intelligence, faith) VALUES(?, ?, ?, ?, ?, ?, ?)";
+String sql = "INSERT INTO pdc.characters(name, race, career, strength, dexterity, intelligence, faith) VALUES(?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url, user, password);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -57,8 +113,10 @@ public class Database {
     
     
     public CharacterAttributes loadCharacter(String name) {
-        String sql = "SELECT * FROM characters WHERE name = ?";
         
+        //String sql = "SELECT * FROM characters WHERE name = ?";
+        String sql = "SELECT * FROM pdc.characters WHERE name = ?";
+
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, name);
             ResultSet resultSet = pstmt.executeQuery();
@@ -83,5 +141,19 @@ public class Database {
         
         return null;
     }
+    
+    //I asked ChatGPT write a shutdown method for the database
+   public void shutdown() {
+    try {
+        DriverManager.getConnection("jdbc:derby:;shutdown=true");
+    } catch (SQLException e) {
+        if (((e.getErrorCode() == 50000) && ("XJ015".equals(e.getSQLState())))) {     
+            System.out.println("Derby shut down normally");
+        } else {
+            System.out.println("Derby did not shut down normally");
+            e.printStackTrace();
+        }
+    }
+}
 }
 

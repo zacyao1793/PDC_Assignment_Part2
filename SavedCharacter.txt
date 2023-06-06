@@ -1,7 +1,7 @@
-Name: bo
-Race: Mortal
+Name: we
+Race: Draconian
 Career: Vagabond
-Strength: 15
-Dexterity: 13
-Intelligence: 9
-Faith: 12
+Strength: 20
+Dexterity: 14
+Intelligence: 5
+Faith: 5

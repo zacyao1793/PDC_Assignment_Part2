@@ -29,6 +29,7 @@ public class CharacterGUI {
     
     
     public CharacterGUI() {
+        
         //Constructors for the GUI
         frame = new JFrame("Elder Ring 2");// The main window
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// Close bottom
@@ -63,7 +64,9 @@ public class CharacterGUI {
         frame.setVisible(true);
         
  
-       
+       frame.setVisible(true);
+
+    
 
 
       
