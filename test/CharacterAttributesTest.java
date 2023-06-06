@@ -18,6 +18,7 @@ public class CharacterAttributesTest {
 
     @Test
     public void testSetAndGetRace() {
+        //Get and Set the race attribute of a CharacterAttributes object and verifies if the values match using assertEquals().
         System.out.println("GetAndSetRace");
         CharacterAttributes instance = new CharacterAttributesPrint();
         String expResult = "Mortal";
@@ -28,6 +29,7 @@ public class CharacterAttributesTest {
 
     @Test
     public void testSetAndGetCareer() {
+        //Get and Set the career attribute of a CharacterAttributes object and verifies if the values match using assertEquals().
         System.out.println("GetAndSetCareer");
         CharacterAttributes instance = new CharacterAttributesPrint();
         String expResult = "Vagabond";
@@ -111,7 +113,7 @@ public class CharacterAttributesTest {
     }
 
     public class CharacterAttributesPrint extends CharacterAttributes {
-
+        //The display method
         public void display() {
   
         }

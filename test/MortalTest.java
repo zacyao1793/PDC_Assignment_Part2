@@ -11,6 +11,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import static org.junit.Assert.*;
 
+//I asked ChatGPT to write the unit test for the Mortal class, but seems like it could not pass the test either.
 public class MortalTest {
     
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();

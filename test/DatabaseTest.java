@@ -24,6 +24,7 @@ public class DatabaseTest {
             this.faith = faith;
         }
         
+        
         public void display() {
             System.out.println("Name: " + name);
             System.out.println("Race: " + race);
@@ -37,6 +38,7 @@ public class DatabaseTest {
 
     @Before
     public void setUp() {
+        //Instantiate the Database object  and create a TestCharacter object (character) with specific attribute values.
         db = new Database();
 
         character = new TestCharacter("Car", "Mortal", "Vegabond",7, 10, 8, 9); 
@@ -45,6 +47,7 @@ public class DatabaseTest {
     
     @Test
     public void testSaveCharacter() {
+        //Save the character object to the database and fails the test if any exceptions occur during the process.
         try {
             db.saveCharacter(character);
         } catch (Exception e) {
@@ -55,16 +58,16 @@ public class DatabaseTest {
     @Test
     public void testLoadCharacter() {
         try {
-            // first, save the character to the database
+            // First, save the character to the database
             db.saveCharacter(character);
 
-            // then, load the character from the database
+            // Fhen, load the character from the database
             CharacterAttributes loadedCharacter = db.loadCharacter(character.getName());
 
             // Assert that the loaded character is not null
             assertNotNull(loadedCharacter);
 
-            // finally, verify that the loaded character has the same attributes as the saved character
+            // Finally, verify that the loaded character has the same attributes as the saved character
             assertEquals(character.getName(), loadedCharacter.getName());
             assertEquals(character.getRace(), loadedCharacter.getRace());
             assertEquals(character.getCareer(), loadedCharacter.getCareer());

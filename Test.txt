@@ -1,0 +1,7 @@
+Name: Test
+Race: Mortal
+Career: Vagabond
+Strength: 7
+Dexterity: 10
+Intelligence: 8
+Faith: 9

@@ -17,13 +17,14 @@ public class CharacterSaveTest {
 
     @BeforeClass
     public static void setUp() {
-        // Use a random file name to ensure uniqueness
+        // Use a random file name to test
         testFileName = "Test.txt";
         testFrame = new JFrame("Test");
     }
 
     @Test
     public void testSaveCharacterToFile() {
+        //Creates a Mortal character object with specific attribute values and sets its name and career
         Mortal character = new Mortal(7, 10, 8, 9);
         character.setName("Test");
         character.setCareer("Vagabond");
@@ -31,13 +32,16 @@ public class CharacterSaveTest {
         CharacterSave characterSave = new CharacterSave(testFileName);
         characterSave.saveCharacterToFile(character, testFrame);
 
+        //After saving the character to the file, the test method reads the content of the file
         String fileContent = "";
         try {
+            
             fileContent = new String(Files.readAllBytes(Paths.get(testFileName)));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        //Compares it with the expected content
         String expectedContent = 
                 "Name: " + character.getName() + "\n" +
                 "Race: " + character.getRace() + "\n" +
@@ -50,12 +54,4 @@ public class CharacterSaveTest {
         assertEquals(expectedContent, fileContent);
     }
 
-    @AfterClass
-    public static void cleanUp() {
-        // Delete the test file
-        File file = new File(testFileName);
-        if (file.exists()) {
-            file.delete();
-        }
-    }
 }
