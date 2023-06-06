@@ -63,13 +63,7 @@ public class CharacterGUI {
        // Make it visible
         frame.setVisible(true);
         
- 
-       frame.setVisible(true);
-
-    
-
-
-      
+   
     }
 
     // Method to create the title panel
@@ -103,7 +97,7 @@ public class CharacterGUI {
                 cardLayout.show(cardPanel, "RacePanel");
             }
         });
-
+        // Add to the panel
         panel.add(titleLabel, gbc);
         panel.add(startButton, gbc);
 
@@ -114,10 +108,11 @@ public class CharacterGUI {
     
      // Method to create the race panel
     private JPanel createRacePanel() {
+        //Layout of the panel
         JPanel panel = new JPanel(new GridBagLayout());
          panel.setBackground(new Color(51, 51, 51));
         
-        //I asked ChatGPT how to organize the layout of boxes
+        //I asked ChatGPT how to organize the layout of each panel
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER; 
         gbc.fill = GridBagConstraints.HORIZONTAL; 
@@ -131,44 +126,51 @@ public class CharacterGUI {
         raceLabel.setFont(font);
         raceLabel.setForeground(Color.WHITE);
         
-        
+        //Racecombo box for selecting race
         raceComboBox = new JComboBox<>(new String[]{"Mortal", "Deepkin", "Feymour", "Draconian", "Celestial"});
         raceComboBox.setFont(font);
         raceComboBox.setBackground(new Color(51, 51, 51));
         raceComboBox.setForeground(Color.WHITE);
 
-        // Create a button to go to the next panel.
+        // Button to go to the next panel.
         nextButton = new JButton("Next");
         nextButton.setFont(font);
         nextButton.setBackground(new Color(51, 51, 51));
         nextButton.setForeground(Color.WHITE);
 
+        
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //Add the attibutes points to the character upon the choice from the comboBox
                 String race = (String) raceComboBox.getSelectedItem();
                 character = CharacterCreation.createCharacterAttributes(race, 0, 0, 0, 0);
                 character.applyRaceModifiers(race);
+                // Move to the next panel (CareerPanel)
                 cardLayout.show(cardPanel, "CareerPanel");
             }
         });
         
-        
-        JButton loadButton = new JButton("Load Character");
+           //Bottom for loading character
+            JButton loadButton = new JButton("Load Character");
             loadButton.setFont(font);
             loadButton.setBackground(new Color(51, 51, 51));
             loadButton.setForeground(Color.WHITE);
 
+            
             loadButton.addActionListener(new ActionListener() {
-        @Override
+                
+        @Override  
             public void actionPerformed(ActionEvent e) {
+            //A pop up box for user enter previous created character's name
             String name = JOptionPane.showInputDialog(frame, "Enter the name of the character to load");
+            //Load the character from the database
             loadCharacterFromDatabase(name);
         }
     });
         
 
-            
+        //Story telling    
         storyTextArea = new JTextArea(10, 40);
         storyTextArea.setFont(font);
         storyTextArea.setText("\"Greetings, traveler. Before we proceed, tell me, which of these forms will your soul inhabit?\n"
@@ -180,6 +182,7 @@ public class CharacterGUI {
         storyTextArea.setBackground(new Color(51, 51, 51));
         storyTextArea.setForeground(Color.WHITE);
 
+        //Add components to the panel
         panel.add(raceLabel, gbc);
         panel.add(raceComboBox, gbc);
         
@@ -217,6 +220,7 @@ public class CharacterGUI {
         careerLabel.setBackground(new Color(102, 102, 102));
         careerLabel.setForeground(Color.WHITE);
         
+        //CareerComboBox for selectin career
         careerComboBox = new JComboBox<>(new String[]{"Vagabond", "Ronin", "Pagan", "Spellblade", "Witch Hunter"});
         careerComboBox.setFont(font);
         careerComboBox.setBackground(new Color(102, 102, 102));
@@ -232,14 +236,17 @@ public class CharacterGUI {
         
         nextButton.addActionListener(new ActionListener() {
     @Override
+    
     public void actionPerformed(ActionEvent e) {
+        //Add up the career attributes to the race attributes, detail see the CharacterAttributes class
         String career = (String) careerComboBox.getSelectedItem();
         character.applyCareerModifiers(career);
+        // Move to the next panel (NamePanel)
         cardLayout.show(cardPanel, "NamePanel");
     }
 });
 
-        
+        //Back bottome 
         JButton backButton = new JButton("Back");
         backButton.setFont(font);
         backButton.setBackground(new Color(102, 102, 102));
@@ -248,6 +255,7 @@ public class CharacterGUI {
         backButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            //Show RacePanel if user click Back bottom
             cardLayout.show(cardPanel, "RacePanel");
         }
     });
@@ -258,6 +266,7 @@ public class CharacterGUI {
         panel.add(careerComboBox);
         panel.add(nextButton);
         
+        //Story telling
         JTextArea storyTextAreaCareer = new JTextArea(10, 40);
         storyTextAreaCareer.setFont(font);
         storyTextAreaCareer.setText("\"Your journey begins now, traveler. Before we face the trials ahead, tell me, \n"
@@ -272,6 +281,8 @@ public class CharacterGUI {
         storyTextAreaCareer.setBackground(new Color(102, 102, 102));
         storyTextAreaCareer.setForeground(Color.WHITE);
 
+        
+        // Add the components to the panel.
         panel.add(careerLabel, gbc);
         panel.add(careerComboBox, gbc);
         panel.add(storyTextAreaCareer, gbc);
@@ -285,6 +296,7 @@ public class CharacterGUI {
     
     // Method to create the name panel
     private JPanel createNamePanel() {
+        
     JPanel panel = new JPanel(new GridBagLayout());
     panel.setBackground(new Color(153, 153, 153));
 
@@ -295,6 +307,7 @@ public class CharacterGUI {
 
     Font font = new Font("Dialog", Font.PLAIN, 18);
 
+    //Name box for entering name
     JLabel nameLabel = new JLabel("What name does your soul bear?");
     nameLabel.setFont(font);
     nameLabel.setBackground(new Color(153, 153, 153));
@@ -305,11 +318,12 @@ public class CharacterGUI {
     nameField.setBackground(new Color(153, 153, 153));
     nameField.setForeground(Color.WHITE);
 
+    //Next bottom
     JButton nextButton = new JButton("Next");
     nextButton.setFont(font);
     nextButton.setBackground(new Color(153, 153, 153));
     nextButton.setForeground(Color.WHITE);
-
+    //Back bottom
     JButton backButton = new JButton("Back");
     backButton.setFont(font);
     backButton.setBackground(new Color(153, 153, 153));
@@ -318,6 +332,7 @@ public class CharacterGUI {
     nextButton.addActionListener(new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
+        
         String name = nameField.getText();
         
         //I asked ChatGPT to add a feature that pops up a notification when the user enters a number or any non-alphabetic characters in the name field
@@ -329,6 +344,7 @@ public class CharacterGUI {
             return;
         }
         
+        //ResultTextArea for displaying stats in the final panel
         character.setName(name);
         resultTextArea.setText(
             "Name: " + character.getName() + "\n" +
@@ -348,10 +364,12 @@ public class CharacterGUI {
     backButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            //Back to Career panel
             cardLayout.show(cardPanel, "CareerPanel");
         }
     });
 
+     // Add the components to the panel.
     panel.add(nameLabel, gbc);
     panel.add(nameField, gbc);
     panel.add(nextButton, gbc);
@@ -387,7 +405,7 @@ public class CharacterGUI {
 
         
         
-        
+        //Stroy Telling
         JTextArea storyTextAreaFinal = new JTextArea(10, 40);
         storyTextAreaFinal.setFont(font);
         
@@ -411,8 +429,9 @@ public class CharacterGUI {
         printToFileButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //Character save to file called "SavedCharacter"
                 saveCharacterToFile(character);
-                //saveCharacterToDatabase(character);
+                
             }
         });
 
@@ -445,6 +464,7 @@ public class CharacterGUI {
     
     // Method to create the load character panel
      private JPanel createLoadPanel() {
+         
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setBackground(new Color(153, 153, 153));
 
@@ -455,6 +475,7 @@ public class CharacterGUI {
 
         Font font = new Font("Dialog", Font.PLAIN, 18);
 
+        //A panel shows the stats of the loaded character
         JLabel nameLabel = new JLabel("Loaded Character Stats:");
         nameLabel.setFont(font);
         nameLabel.setBackground(new Color(153, 153, 153));
@@ -466,6 +487,7 @@ public class CharacterGUI {
         loadedresultTextArea.setBackground(new Color(153, 153, 153));
         loadedresultTextArea.setForeground(Color.WHITE);
 
+        //Back bottom
         JButton backButton = new JButton("Back");
         backButton.setFont(font);
         backButton.setBackground(new Color(153, 153, 153));
@@ -495,11 +517,13 @@ public class CharacterGUI {
     db.saveCharacter(character);
 }
      
+    
     //Method to load a character's details from a database
     private void loadCharacterFromDatabase(String name) {
         Database db = new Database();
         CharacterAttributes loadedCharacter = db.loadCharacter(name);
-
+        //Similar to the stats in the Final Panel
+        //Showing all the value stored in the database
         if (loadedCharacter != null) {
             character = loadedCharacter;
             loadedresultTextArea.setText(
@@ -511,11 +535,9 @@ public class CharacterGUI {
                             "Intelligence: " + character.getIntelligence() + "\n" +
                             "Faith: " + character.getFaith());
             cardLayout.show(cardPanel, "LoadPanel");
-        } else {
-            loadedresultTextArea.setText("Character not found.");
+        } 
         }
     }
 
     
     
-}

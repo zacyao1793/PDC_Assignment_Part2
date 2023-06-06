@@ -1,7 +1,7 @@
-Name: we
-Race: Draconian
+Name: aa
+Race: Mortal
 Career: Vagabond
-Strength: 20
-Dexterity: 14
-Intelligence: 5
-Faith: 5
+Strength: 15
+Dexterity: 13
+Intelligence: 9
+Faith: 12

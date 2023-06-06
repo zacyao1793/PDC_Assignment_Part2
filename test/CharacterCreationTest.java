@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 
-import org.junit.After;
-import org.junit.Before;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -19,6 +18,7 @@ public class CharacterCreationTest {
         int dexterity = 10;
         int intelligence = 8;
         int faith = 9;
+        
         CharacterAttributes result = CharacterCreation.createCharacterAttributes(race, strength, dexterity, intelligence, faith);
         assertTrue(result instanceof Mortal);
         assertEquals(strength, result.getStrength());

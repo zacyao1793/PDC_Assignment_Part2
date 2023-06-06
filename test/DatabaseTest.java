@@ -39,10 +39,10 @@ public class DatabaseTest {
     public void setUp() {
         db = new Database();
 
-        // Let's create a TestCharacter object. 
-        character = new TestCharacter("John", "Human", "Warrior", 10, 10, 10, 10); 
+        character = new TestCharacter("Car", "Mortal", "Vegabond",7, 10, 8, 9); 
     }
 
+    
     @Test
     public void testSaveCharacter() {
         try {
@@ -73,7 +73,7 @@ public class DatabaseTest {
             assertEquals(character.getIntelligence(), loadedCharacter.getIntelligence());
             assertEquals(character.getFaith(), loadedCharacter.getFaith());
         } catch (Exception e) {
-            fail("Loading character failed with exception: " + e.getMessage());
+            fail("Loading character failed " + e.getMessage());
         }
     }
 }

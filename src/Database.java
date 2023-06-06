@@ -22,6 +22,7 @@ import java.sql.Statement;
 public class Database {
     //Running database in Network server mode
     //private final String url = "jdbc:derby://localhost:1527/characterDB";
+    
     //Running database in Embedded mode
     private final String url = "jdbc:derby:characterDB;create=true";
 
@@ -39,6 +40,7 @@ public class Database {
     }
     **/
     
+    //Sets up the connection to the Derby database in Embedded mode
     public Database() {
     try {
         Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
@@ -49,24 +51,25 @@ public class Database {
         e.printStackTrace();
     }
 }
-   
+   //Creates a schema named "pdc" if it doesn't already exist in the database, it was original created in Network server mode but the progrm still need to create the schema again or it will show error
     public void createSchema() {
     try (Statement stmt = connection.createStatement()) {
         ResultSet resultSet = connection.getMetaData().getSchemas(null, "PDC");
         if (!resultSet.next()) {
             String createSchemaSQL = "CREATE SCHEMA pdc";
             stmt.execute(createSchemaSQL);
-            System.out.println("Created schema in given database...");
         }
     } catch (SQLException e) {
+        //Handle exceptions and errors
         e.printStackTrace();
     }
 }
-
+//This method creates a table named "characters" within the "pdc" schema if it doesn't already exist
 public void createTable() {
     try (Statement stmt = connection.createStatement()) {
         ResultSet resultSet = connection.getMetaData().getTables(null, "PDC", "CHARACTERS", null);
         if (!resultSet.next()) {
+            //Collum types and names
             String createTableSQL = "CREATE TABLE pdc.characters ("
                     + "name VARCHAR(255), "
                     + "race VARCHAR(255), "
@@ -76,20 +79,21 @@ public void createTable() {
                     + "intelligence INT, "
                     + "faith INT)";
             stmt.execute(createTableSQL);
-            System.out.println("Created table in given database...");
         }
     } catch (SQLException e) {
         e.printStackTrace();
     }
 }
 
-    
+    //Save CharacterAttributes to the database
     public void saveCharacter(CharacterAttributes character) {
         
         
         //String sql = "INSERT INTO characters(name, race, career, strength, dexterity, intelligence, faith) VALUES(?, ?, ?, ?, ?, ?, ?)";
-String sql = "INSERT INTO pdc.characters(name, race, career, strength, dexterity, intelligence, faith) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO pdc.characters(name, race, career, strength, dexterity, intelligence, faith) VALUES(?, ?, ?, ?, ?, ?, ?)";
 
+        
+        //Prepares SQL INSERT statement
         try (Connection conn = DriverManager.getConnection(url, user, password);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -100,7 +104,7 @@ String sql = "INSERT INTO pdc.characters(name, race, career, strength, dexterity
             pstmt.setInt(5, character.getDexterity());
             pstmt.setInt(6, character.getIntelligence());
             pstmt.setInt(7, character.getFaith());
-
+            //executes the statement
             pstmt.executeUpdate();
             System.out.println("Character Saved ");
 
@@ -112,15 +116,19 @@ String sql = "INSERT INTO pdc.characters(name, race, career, strength, dexterity
     }
     
     
+    //I asked ChatGPT write a load character method since its a bit complex
+    //Retrieves character attributes from the database based on the provided name
     public CharacterAttributes loadCharacter(String name) {
         
         //String sql = "SELECT * FROM characters WHERE name = ?";
         String sql = "SELECT * FROM pdc.characters WHERE name = ?";
 
+        //Prepares an SQL SELECT statement
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, name);
             ResultSet resultSet = pstmt.executeQuery();
             
+            //Sets the name parameter in the statement
             if (resultSet.next()) {
                 String race = resultSet.getString("race");
                 String career = resultSet.getString("career");
@@ -142,17 +150,15 @@ String sql = "INSERT INTO pdc.characters(name, race, career, strength, dexterity
         return null;
     }
     
-    //I asked ChatGPT write a shutdown method for the database
+    
+    
+    
+    //Shutdown the database once program closed
    public void shutdown() {
     try {
         DriverManager.getConnection("jdbc:derby:;shutdown=true");
     } catch (SQLException e) {
-        if (((e.getErrorCode() == 50000) && ("XJ015".equals(e.getSQLState())))) {     
-            System.out.println("Derby shut down normally");
-        } else {
-            System.out.println("Derby did not shut down normally");
-            e.printStackTrace();
-        }
+       e.printStackTrace();
     }
 }
 }

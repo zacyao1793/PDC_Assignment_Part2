@@ -86,6 +86,8 @@ public abstract class CharacterAttributes {
 
     public abstract void display();
     
+    
+    //Attributes points fro each Race
     public void applyRaceModifiers(String race) {
     switch (race) {
         case "Mortal":
@@ -120,7 +122,8 @@ public abstract class CharacterAttributes {
             break;
     }
 }
-
+    
+ //Attributes points fro each Career add on to the race attributes
     public void applyCareerModifiers(String career) {
     switch (career) {
         case "Vagabond":
@@ -156,7 +159,8 @@ public abstract class CharacterAttributes {
             
             
     }
-    //So the career field in database is valid instead of null
+    
+    //So the career field in database is valid instead of null, not really sure why
     this.career=career;
 }
 

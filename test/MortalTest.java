@@ -5,18 +5,7 @@
  */
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
-
-/**
- *
- * @author clone
- */
-import org.junit.Before;
-import org.junit.After;
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -43,7 +32,9 @@ public class MortalTest {
     @Test
     public void testDisplay() {
         instance.display();
-        String expected = "Race: Mortal\n"
+        String expected = 
+                
+                           "Race: Mortal\n"
                         + "Career: Vagabond\n"
                         + "Strength: 7\n"
                         + "Dexterity: 10\n"

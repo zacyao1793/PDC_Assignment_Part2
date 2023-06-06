@@ -11,14 +11,14 @@ import static org.junit.Assert.*;
  *
  * @author clone
  */
-import org.junit.Test;
-import static org.junit.Assert.*;
+
+
 
 public class CharacterAttributesTest {
 
     @Test
     public void testSetAndGetRace() {
-        System.out.println("setAndGetRace");
+        System.out.println("GetAndSetRace");
         CharacterAttributes instance = new CharacterAttributesPrint();
         String expResult = "Mortal";
         instance.setRace(expResult);
@@ -28,7 +28,7 @@ public class CharacterAttributesTest {
 
     @Test
     public void testSetAndGetCareer() {
-        System.out.println("setAndGetCareer");
+        System.out.println("GetAndSetCareer");
         CharacterAttributes instance = new CharacterAttributesPrint();
         String expResult = "Vagabond";
         instance.setCareer(expResult);
@@ -38,7 +38,7 @@ public class CharacterAttributesTest {
 
     @Test
     public void testSetAndGetName() {
-        System.out.println("setAndGetName");
+        System.out.println("GetAndSetName");
         CharacterAttributes instance = new CharacterAttributesPrint();
         String expResult = "Zac";
         instance.setName(expResult);
@@ -48,7 +48,7 @@ public class CharacterAttributesTest {
 
     @Test
     public void testSetAndGetStrength() {
-        System.out.println("setAndGetStrength");
+        System.out.println("GetAndSetStrength");
         CharacterAttributes instance = new CharacterAttributesPrint();
         int expResult = 5;
         instance.setStrength(expResult);
@@ -58,7 +58,7 @@ public class CharacterAttributesTest {
 
     @Test
     public void testSetAndGetDexterity() {
-        System.out.println("setAndGetDexterity");
+        System.out.println("GetAndSetDexterity");
         CharacterAttributes instance = new CharacterAttributesPrint();
         int expResult = 8;
         instance.setDexterity(expResult);
@@ -68,7 +68,7 @@ public class CharacterAttributesTest {
 
     @Test
     public void testSetAndGetIntelligence() {
-        System.out.println("setAndGetIntelligence");
+        System.out.println("GetAndSetIntelligence");
         CharacterAttributes instance = new CharacterAttributesPrint();
         int expResult = 10;
         instance.setIntelligence(expResult);
@@ -78,7 +78,7 @@ public class CharacterAttributesTest {
 
     @Test
     public void testSetAndGetFaith() {
-        System.out.println("setAndGetFaith");
+        System.out.println("GetAndSetFaith");
         CharacterAttributes instance = new CharacterAttributesPrint();
         int expResult = 7;
         instance.setFaith(expResult);
